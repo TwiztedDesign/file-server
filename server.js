@@ -5,7 +5,7 @@ var path = require('path');
 var fs = require('fs');
 
 var args = process.argv.slice(2);
-var storagePath = args.length > 0? args[0] : 'X:';
+var storagePath = args.length > 0? args[0] : './';
 
 var storage = multer.diskStorage({
     destination: function(req, file, callback) {
