@@ -6,7 +6,8 @@ var fs = require('fs')
 
 var storage = multer.diskStorage({
     destination: function(req, file, callback) {
-        callback(null, './');
+        // callback(null, './');
+        callback(null, 'X:');
     },
     filename: function(req, file, callback) {
         console.log(file);
@@ -18,7 +19,8 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 
-app.use(express.static(__dirname));
+// app.use(express.static(__dirname));
+app.use(express.static("X:"));
 
 app.get('/', function (req, res) {
     res.send('NBC - Videoflow - Storage');
