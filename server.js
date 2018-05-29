@@ -45,7 +45,7 @@ app.post('/', function(req, res) {
 var port            = process.env.PORT || 8080;
 var host            = '0.0.0.0';
 var server          = app.listen(port, host, function(){
-    console.log('File server running');
+    console.log('File server running on ' + storagePath);
 });
 
 
