@@ -28,8 +28,7 @@ app.get('/', function (req, res) {
     res.send('NBC - Videoflow - Storage');
 });
 
-app.post('/', function(req, res) {
-    // upload.single('userFile');
+function uploadMiddleware(req, res) {
     upload.single('file')(req, res, function(err) {
         if(err){
             console.log(err);
@@ -39,7 +38,10 @@ app.post('/', function(req, res) {
         }
 
     })
-});
+}
+
+app.post('/', uploadMiddleware);
+app.put('/', uploadMiddleware);
 
 
 var port            = process.env.PORT || 8080;
