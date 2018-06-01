@@ -12,9 +12,7 @@ var storage = multer.diskStorage({
         callback(null, storagePath);
     },
     filename: function(req, file, callback) {
-        console.log(file);
-        // callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-        callback(null, file.originalname);
+        callback(null, uuid() + path.extname(file.originalname));
     }
 });
 
@@ -37,6 +35,16 @@ app.get('/', function (req, res) {
     res.send('NBC - Videoflow - Storage');
 });
 
+
+function uuid() {
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+    return s4() + s4() + s4() + s4();
+};
+
 function uploadMiddleware(req, res) {
     upload(req, res, function(err) {
     // upload.any()(req, res, function(err) {
@@ -44,7 +52,7 @@ function uploadMiddleware(req, res) {
             console.log(err);
             res.json(err);
         } else {
-            res.end('File is uploaded')
+            res.json({filename : res.req.file.filename});
         }
 
     })
