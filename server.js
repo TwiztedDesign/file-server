@@ -50,7 +50,7 @@ function uploadMiddleware(req, res) {
     // upload.any()(req, res, function(err) {
         if(err){
             console.log(err);
-            res.json(err);
+            res.sendStatus(500);
         } else {
             res.json({filename : res.req.file.filename});
         }
