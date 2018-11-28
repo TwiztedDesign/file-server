@@ -49,7 +49,11 @@ function uploadMiddleware(req, res) {
     upload(req, res, function(err) {
     // upload.any()(req, res, function(err) {
         if(err){
+            console.log('Error: Upload Error');
             console.log(err);
+            res.sendStatus(500);
+        } else if(!res.req || !res.req.file){
+            console.log('Error: No File in the response');
             res.sendStatus(500);
         } else {
             res.json({filename : res.req.file.filename});
